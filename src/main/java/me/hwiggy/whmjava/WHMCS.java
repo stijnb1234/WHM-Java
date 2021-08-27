@@ -21,7 +21,7 @@ import java.net.http.HttpResponse;
  */
 public class WHMCS {
     private final HttpClient client = HttpClient.newHttpClient();
-    private final String url, identifier, secret;
+    private final String url, identifier, secret, accessKey;
     private final boolean oldAuth;
 
     /***
@@ -31,11 +31,27 @@ public class WHMCS {
      * @param username The Username to authenticate with
      * @param password The Password to authenticate with
      */
-    public WHMCS(boolean oldAuth, String url, String username, String password){
+    public WHMCS(boolean oldAuth, String url, String username, String password) {
         this.oldAuth = oldAuth;
         this.url = url;
         this.identifier = username;
         this.secret = password;
+        this.accessKey = "";
+    }
+
+    /***
+     *
+     * @param oldAuth Whether or not to use Username/Password authentication
+     * @param url The URL of your WHMCS API Endpoint
+     * @param username The Username to authenticate with
+     * @param password The Password to authenticate with
+     */
+    public WHMCS(boolean oldAuth, String url, String username, String password, String accessKey) {
+        this.oldAuth = oldAuth;
+        this.url = url;
+        this.identifier = username;
+        this.secret = password;
+        this.accessKey = accessKey;
     }
 
     /***
@@ -44,7 +60,7 @@ public class WHMCS {
      * @param identifer The Identifier to authenticate with
      * @param secret The Secret to authenticate with
      */
-    public WHMCS(String url, String identifer, String secret){
+    public WHMCS(String url, String identifer, String secret) {
         this(false, url, identifer, secret);
     }
 
@@ -64,8 +80,9 @@ public class WHMCS {
      *          information.
      */
     public JsonObject submitPayload(Payload payload) throws IOException, InterruptedException {
-        if (oldAuth){
+        if (oldAuth) {
             payload.append("username", identifier).append("password", secret);
+            if (!accessKey.isEmpty()) payload.append("accesskey", accessKey);
         } else {
             payload.append("identifier", identifier).append("secret", secret);
         }
