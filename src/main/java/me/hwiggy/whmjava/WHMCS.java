@@ -88,6 +88,8 @@ public class WHMCS {
 
         if (!accessKey.isEmpty()) payload.append("accesskey", accessKey);
 
+        payload.append("responsetype", "json"); //Force JSON, no XML...
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("Content-Type", "application/json")
