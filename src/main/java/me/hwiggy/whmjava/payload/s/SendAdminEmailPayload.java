@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.s;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 /***
  * This class and its methods directly relate to the API documentation.
@@ -56,7 +56,7 @@ public class SendAdminEmailPayload extends Payload {
     /***
      * @param mergeFields    The merge fields to be used in the email template	
      */
-    public SendAdminEmailPayload withMergeFields(JSONObject mergeFields) {
+    public SendAdminEmailPayload withMergeFields(JsonObject mergeFields) {
         append("mergefields", mergeFields);
         return this;
     }

@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.a;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 /***
  * This class and its methods directly relate to the API documentation.
@@ -266,7 +266,7 @@ public class AddProductPayload extends Payload {
      * @param pricing K-V array, where K is the currency ID and V is an array of K-V values where K is the billing cycle, and V is the amount to bill.
      * @return This Payload, for chaining
      */
-    public AddProductPayload withPricing(JSONObject pricing){
+    public AddProductPayload withPricing(JsonObject pricing){
         append("pricing", pricing);
         return this;
     }

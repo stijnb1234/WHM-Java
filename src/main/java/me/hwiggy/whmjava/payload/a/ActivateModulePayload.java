@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.a;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 /***
  * This class and its methods directly relate to the API documentation.
  * API documentation can be found at the following URL:
@@ -25,7 +25,7 @@ public class ActivateModulePayload extends Payload {
      * @param parameters An array of configuration parameters to set for the given module. Use GetModuleConfigurationParameters to obtain a list of fields for a given module.
      * @return This Payload, for chaining
      */
-    public ActivateModulePayload withParameters(JSONObject parameters){
+    public ActivateModulePayload withParameters(JsonObject parameters){
         append("parameters", parameters);
         return this;
     }

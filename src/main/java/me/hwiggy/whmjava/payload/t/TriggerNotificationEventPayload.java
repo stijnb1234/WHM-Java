@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.t;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 /***
  * This class and its methods directly relate to the API documentation.
@@ -65,7 +65,7 @@ public class TriggerNotificationEventPayload extends Payload {
     /***
      * @param attributes    An array of Attributes to include in the notification. Requires at least label and value parameters. Other parameters are . See WHMCS\Notification\NotificationAttribute.	
      */
-    public TriggerNotificationEventPayload withAttributes(JSONObject attributes) {
+    public TriggerNotificationEventPayload withAttributes(JsonObject attributes) {
         append("attributes", attributes);
         return this;
     }

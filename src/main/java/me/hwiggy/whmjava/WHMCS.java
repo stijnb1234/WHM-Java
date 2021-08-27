@@ -1,7 +1,8 @@
 package me.hwiggy.whmjava;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URI;
@@ -62,7 +63,7 @@ public class WHMCS {
      *          See <a href="#securitychecks">security checks</a> for further
      *          information.
      */
-    public JSONObject submitPayload(Payload payload) throws IOException, InterruptedException {
+    public JsonObject submitPayload(Payload payload) throws IOException, InterruptedException {
         if (oldAuth){
             payload.append("username", identifier).append("password", secret);
         } else {
@@ -75,6 +76,6 @@ public class WHMCS {
                 .build();
         HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
         String response = httpResponse.body();
-        return new JSONObject(response);
+        return JsonParser.parseString(response).getAsJsonObject();
     }
 }

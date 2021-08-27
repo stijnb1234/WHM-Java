@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.a;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 /***
  * This class and its methods directly relate to the API documentation.
@@ -47,7 +47,7 @@ public class AddTicketNotePayload extends Payload {
      * @param attachments Optional base64 json encoded array of file attachments. Can be the direct output of a multipart-form-data form submission ($_FILES superglobal in PHP) or an array of arrays consisting of both a filename and data keys
      * @return This Payload, for chaining
      */
-    public AddTicketNotePayload withAttachments(JSONObject attachments){
+    public AddTicketNotePayload withAttachments(JsonObject attachments){
         append("attachments", attachments);
         return this;
     }

@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.u;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 /***
  * This class and its methods directly relate to the API documentation.
@@ -59,7 +59,7 @@ public class UpdateQuotePayload extends Payload {
      *
      * @param lineItems A base64 encoded serialized array containing the following keys:
      */
-    public UpdateQuotePayload withLineItems(JSONObject lineItems) {
+    public UpdateQuotePayload withLineItems(JsonObject lineItems) {
         append("lineitems", lineItems);
         return this;
     }

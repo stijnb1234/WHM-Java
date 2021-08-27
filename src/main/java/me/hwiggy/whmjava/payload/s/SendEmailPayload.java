@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.s;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 /***
  * This class and its methods directly relate to the API documentation.
@@ -57,7 +57,7 @@ public class SendEmailPayload extends Payload {
     /***
      * @param customVars    The custom variables to provide to the email template. Can be used for existing and custom emails.	
      */
-    public SendEmailPayload withCustomVars(JSONObject customVars) {
+    public SendEmailPayload withCustomVars(JsonObject customVars) {
         append("customvars", customVars);
         return this;
     }

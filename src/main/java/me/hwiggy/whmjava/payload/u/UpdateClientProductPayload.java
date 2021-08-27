@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.u;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 import javax.print.DocFlavor;
 
@@ -260,7 +260,7 @@ public class UpdateClientProductPayload extends Payload {
      *
      * @param unset An array of items to unset. Can be one of: ‘domain’, ‘serviceusername’, ‘servicepassword’, ‘subscriptionid’, ‘ns1’, ‘ns2’, ‘dedicatedip’, ‘assignedips’, ‘notes’, ‘suspendreason’
      */
-    public UpdateClientProductPayload withUnset(JSONObject unset) {
+    public UpdateClientProductPayload withUnset(JsonObject unset) {
         append("unset", unset);
         return this;
     }

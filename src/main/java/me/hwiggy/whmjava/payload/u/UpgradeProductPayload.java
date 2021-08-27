@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.u;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 /***
  * This class and its methods directly relate to the API documentation.
@@ -68,7 +68,7 @@ public class UpgradeProductPayload extends Payload {
      *                      configoptions[selectedvalue] int The config option selected value
      *                      configoptions[selectedqty] int The config option quantity selected
      */
-    public UpgradeProductPayload withConfigOptions(JSONObject configOptions) {
+    public UpgradeProductPayload withConfigOptions(JsonObject configOptions) {
         append("configoptions", configOptions);
         return this;
     }

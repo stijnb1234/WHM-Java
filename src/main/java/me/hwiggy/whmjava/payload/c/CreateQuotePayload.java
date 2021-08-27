@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.c;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 /***
  * This class and its methods directly relate to the API documentation.
@@ -43,7 +43,7 @@ public class CreateQuotePayload extends Payload {
      *                  lineitems[x][taxable] boolean Is the line item taxable
      * @return This Payload, for chaining
      */
-    public CreateQuotePayload withLineItems(JSONObject lineItems){
+    public CreateQuotePayload withLineItems(JsonObject lineItems){
         append("lineitems", lineItems);
         return this;
     }

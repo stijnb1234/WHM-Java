@@ -1,7 +1,7 @@
 package me.hwiggy.whmjava.payload.a;
 
+import com.google.gson.JsonObject;
 import me.hwiggy.whmjava.payload.Payload;
-import org.json.JSONObject;
 
 /***
  * This class and its methods directly relate to the API documentation.
@@ -344,7 +344,7 @@ public class AddOrderPayload extends Payload {
      * @param domainRenewals A name -> value array of $domainName -> $renewalPeriod renewals to add an order for
      * @return This Payload, for chaining
      */
-    public AddOrderPayload withDomainRenewals(JSONObject domainRenewals){
+    public AddOrderPayload withDomainRenewals(JsonObject domainRenewals){
         append("domainrenewals", domainRenewals);
         return this;
     }
