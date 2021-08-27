@@ -82,10 +82,12 @@ public class WHMCS {
     public JsonObject submitPayload(Payload payload) throws IOException, InterruptedException {
         if (oldAuth) {
             payload.append("username", identifier).append("password", secret);
-            if (!accessKey.isEmpty()) payload.append("accesskey", accessKey);
         } else {
             payload.append("identifier", identifier).append("secret", secret);
         }
+
+        if (!accessKey.isEmpty()) payload.append("accesskey", accessKey);
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("Content-Type", "application/json")
