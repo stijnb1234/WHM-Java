@@ -12,8 +12,6 @@ public abstract class Payload {
         append("action", action);
     }
 
-    //TODO Add Object, instanceof or throw error.
-
     public Payload append(String path, Object toAppend) {
         if (toAppend == null) throw new IllegalArgumentException("At path " + path + ", given object is null.");
 
