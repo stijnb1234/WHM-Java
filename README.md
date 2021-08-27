@@ -19,12 +19,12 @@ Payload payload = new AddAnnouncementPayload(
     "My Announcement",
     "This is my Announcement!"
 );
-JSONObject response;
+JsonObject response;
 try {
   response = whmcs.submitPayload(payload);
 } catch (IOException | InterruptedException e){
   e.printStackTrace();
   return;
 }
-String result = response.getString("result");
+String result = response.get("result").getAsString();
 ```
