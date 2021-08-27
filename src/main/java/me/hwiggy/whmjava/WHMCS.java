@@ -2,13 +2,12 @@ package me.hwiggy.whmjava;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import me.hwiggy.whmjava.payload.Payload;
+import me.hwiggy.whmjava.util.HttpPostForm;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 
 /***
  * This class is the entrypoint for the WHMCS Accessor
@@ -20,7 +19,6 @@ import java.net.http.HttpResponse;
  * https://developers.whmcs.com/api/authentication/
  */
 public class WHMCS {
-    private final HttpClient client = HttpClient.newHttpClient();
     private final String url, identifier, secret, accessKey;
     private final boolean oldAuth;
 
@@ -69,17 +67,9 @@ public class WHMCS {
      * @param payload The Payload to submit to the API
      * @return The API Response, as JSON
      * @throws IOException if an I/O error occurs when sending or receiving
-     * @throws InterruptedException if the operation is interrupted
-     * @throws IllegalArgumentException if the {@code request} argument is not
-     *         a request that could have been validly built as specified by {@link
-     *         HttpRequest.Builder HttpRequest.Builder}.
-     * @throws SecurityException If a security manager has been installed
-     *          and it denies {@link java.net.URLPermission access} to the
-     *          URL in the given request, or proxy if one is configured.
-     *          See <a href="#securitychecks">security checks</a> for further
-     *          information.
+     * @throws JsonSyntaxException if the response includes malformed json
      */
-    public JsonObject submitPayload(Payload payload) throws IOException, InterruptedException {
+    public JsonObject submitPayload(Payload payload) throws IOException, JsonSyntaxException {
         if (oldAuth) {
             payload.append("username", identifier).append("password", secret);
         } else {
@@ -90,13 +80,10 @@ public class WHMCS {
 
         payload.append("responsetype", "json"); //Force JSON, no XML...
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(payload.toString()))
-                .build();
-        HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
-        String response = httpResponse.body();
+        HttpPostForm postForm = new HttpPostForm(url, StandardCharsets.UTF_8);
+        payload.getData().forEach(postForm::addFormField);
+        String response = postForm.finish();
+
         return JsonParser.parseString(response).getAsJsonObject();
     }
 }
