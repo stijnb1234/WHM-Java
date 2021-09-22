@@ -17,6 +17,8 @@ public class AddOrderPayload extends Payload {
      */
     public AddOrderPayload(int clientID, String paymentMethod) {
         super("AddOrder");
+        append("clientid", clientID);
+        append("paymentmethod", paymentMethod);
     }
 
     /***
